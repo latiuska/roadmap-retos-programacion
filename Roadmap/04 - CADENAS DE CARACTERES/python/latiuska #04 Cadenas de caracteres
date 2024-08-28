@@ -1,0 +1,160 @@
+'''*
+ * EJERCICIO:
+ * Muestra ejemplos de todas las operaciones que puedes realizar con cadenas de caracteres
+ * en tu lenguaje. Algunas de esas operaciones podrían ser (busca todas las que puedas):
+ * - Acceso a caracteres específicos, subcadenas, longitud, concatenación, repetición, recorrido,
+ *   conversión a mayúsculas y minúsculas, reemplazo, división, unión, interpolación, verificación...
+ *
+ * DIFICULTAD EXTRA (opcional):
+ * Crea un programa que analice dos palabras diferentes y realice comprobaciones
+ * para descubrir si son:
+ * - Palíndromos
+ * - Anagramas
+ * - Isogramas
+ */'''
+
+#En Python las cadenas de caracteres se escriben entre " "
+
+#Declaración
+
+mi_cadena = "Hola"
+c2 = "mundo"
+paises = ['Argentina', 'Chile', 'Uruguay']
+paises_str = ','.join(paises)
+#Operaciones con cadenas
+
+#Concatenación
+print(mi_cadena + " " + c2 + "!")
+
+#Repetición
+print(c2 * 2)
+
+#Indexación
+print(mi_cadena[0:2]) #Con el índice mostrará la información contenida en el mismo
+
+#Longitud
+print(len(c2))
+
+#Slicing (rebanadas)
+print(mi_cadena[0:2]) #Con el índice mostrará la información contenida en el mismo
+print(mi_cadena[:2]) #Con el índice mostrará la información contenida en el mismo
+
+#Búsqueda
+print("Hola" in c2) #Devuelve true or false
+
+#Reemplazo
+print(mi_cadena.replace('ola', 'ola')) #Reemplaza un valor existente por uno nuevo
+
+#División
+print(mi_cadena.split()) #Crea una lista con los elementos de la cadena
+
+#Mayúsculas, minúsculas, etc
+print(mi_cadena.lower()) #Transforma todo el texto a minúscula > 'Hola mundo'
+print(mi_cadena.upper()) #Transforma todo el texto a mayúscula > 'HOLA MUNDO'
+print(mi_cadena.capitalize()) #Pone la primera letra de cada palara en mayúscula > 'Hola mundo'
+print(mi_cadena.title()) #Pone en mayúscula la primera letra de cada palabra > 'Hola Mundo'
+
+#Eliminación espacios al principio y final (o caracteres)
+print(mi_cadena.strip('H')) #Devuelve la cadena sin los caracteres pasados en el paréntesis. Si no podemos nada, borra los espacios en blanco. > 'ola mundo'
+
+#Búsqueda al principio y final
+print(mi_cadena.startswith('H')) #Nos devuelve True or False si el texto comienza (o no) por la letra indicada
+print(mi_cadena.endswith('o')) #Verifica si el texto termina con un caracter determinado. Devuelve True or False > True
+
+#Búsqueda de posición
+print(mi_cadena.find("d")) #Nos devuelve el índice donde se encuentra la letra d > '8'
+print(mi_cadena.rfind("d")) #Similar al anterior, pero busca de atrás hacia adelante > '8'
+
+#Búsqueda de ocurrencias
+print(mi_cadena.count("a")) #Nos devuelve la cantidad de veces que aparece el parámetro pasado en el () > '1'
+
+#Diferentes comprobaciones
+print(mi_cadena.isdigit()) #Nos dice si es un dígito o no (True or False) > 'False'
+print(mi_cadena.isalnum()) #Nos indica si la cadena es alfanumérica (True or False) > 'False'
+print(mi_cadena.isupper()) #Nos devuelve True or False si el texto está en minúscula
+print(mi_cadena.islower()) #Nos devuelve True or False si el texto está en minúscula
+
+#Invertir el orden
+print(mi_cadena[::-1]) #Nos devuelve la cadena del revés
+
+#Transformar en lista
+print(paises_str) #Join transforma una lista en un string separado por lo que le indiquemos como valor
+print(list(c2))
+
+#Transformación numérica
+c3 = "123456"
+c3 = int(c3)
+print(c3)
+
+c4 = "123.25"
+c4 = float(c4)
+print(c4)
+
+#Formateo
+print("Saludo: {}, lenguaje:{}!".format(mi_cadena, c2))
+
+#Interpolación
+print(f" Saludo: {mi_cadena}, lenguaje: {c2}!")
+
+#EXTRA
+def palindromos(palabra1,palabra2):
+
+    if palabra1 == palabra2[::-1]:
+        return f"La palabra {palabra1} es palíndrome"
+    else:
+        return "No es palíndrome"
+
+resultado = palindromos('arroz', 'zorra')
+print(resultado)
+
+#Alternativa Mouredev
+def check(word1: str, word2: str):
+    print(f"¿{word1} es un palíndromo?: {word1 == word1[::-1]}")
+    print(f"¿{word2} es un palíndromo?: {word2 == word2[::-1]}")
+
+prueba = check('anilina', 'ala')
+print(prueba)
+
+def anagrama(palabra1, palabra2):
+    lista1 = set()
+    lista2 = set()
+    #Recorro los items de la cadena 1 y los añado al set
+    for letra in palabra1:
+        if letra.upper().lower() in palabra1 and letra != "-" and letra != " ":
+            lista1.add(letra.upper().lower())
+    #Recorro los items de la cadena 2 y los añado al set
+    for letra in palabra2:
+        if letra.upper().lower() in palabra2 and letra != "-" and letra != "":
+            lista2.add(letra.upper().lower())
+    #Comparo ambos sets
+    if lista1 == lista2:
+        return "Es un anagrama"
+    else:
+        return "No es un anagrama"
+
+    #Llamo a la función
+prueba = anagrama('caso', 'saco')
+print(prueba)
+
+#Alternativa Mouredev
+#print(f"¿{word1} es anagrama de {word2}?: {sorted(word1) == sorted(word2)}")
+
+def isograma(string):
+    #Creo un set para ver todas las letras existentes en la palabra
+    letters = set()
+    #Bucle para extraer cada letra de la palabra
+    for letra in string:
+        if letra.upper().lower() in letters and letra != "-" and letra != " ":
+            return False
+        #Añado las letras al set
+        letters.add(letra.upper().lower())
+    else:
+        return True
+
+string = "superfagiltco"
+if isograma(string):
+    print(f"La palabra \"{string}\" es un isograma")
+else:
+    print((f" La palabra \"{string}\" tiene letras repetidas"))
+
+isograma("superfagiltco")
