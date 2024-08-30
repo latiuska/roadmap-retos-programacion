@@ -1,0 +1,80 @@
+#Asignación por valor y por referencia
+
+#Tipos de datos pasados por valor (string, float, int, boolean)
+
+mi_entero = 10
+mi_entero_b = mi_entero
+mi_entero = 30
+print(mi_entero)
+print(mi_entero_b)
+
+#Tipos de datos pasados por referencia (todos los datos que no son primitivos: lista, tupla, set, diccionario)
+#Los datos por referencia heredan los valores del dato original, ocupan el mismo espacio en memoria por eso se duplican los valores.
+#Lo que tocamos por referencia modifica a todos los valores de la variable.
+
+mi_lista = [10,20]
+mi_lista_1 = [30,40]
+mi_lista_1 = mi_lista
+mi_lista_1.append(30)
+print(mi_lista)
+print(mi_lista_1)
+
+#Funciones con datos por valor
+
+mi_entero3 = 10
+
+def mi_entero_func(mi_entero: int):
+    mi_entero = 20
+    print(mi_entero)
+mi_entero_func(20)
+
+#Funciones con datos por referencia
+
+def mi_lista_func(mi_lista: list):
+    mi_lista.append(50)
+    print(mi_lista)
+
+    mi_lista_3 = mi_lista
+    mi_lista_3.append(90)
+
+    print(f" Esta es mi lista: {mi_lista}")
+    print(f" Esta es mi lista 3: {mi_lista_3}")
+
+mi_lista_2 = [60, 70]
+mi_lista_func(mi_lista_2)
+print(mi_lista_2)
+
+#EXTRA
+
+#Si queremos mantener la referencia de datos antiguos, en vez de asignar una nueva variable mejor es copiarlo.
+
+Por valor
+def value(valor1:int, valor2: int) -> tuple:
+    #ue(mi_variable1, mi_variable2)
+    temp = valor1
+    valor1 = valor2
+    valor2 = temp
+    return valor1, valor2
+
+mi_variable1 = 10
+mi_variable2 = 20
+mi_variable3, mi_variable4 = value(mi_variable1, mi_variable2)
+
+print(f"{mi_variable1}, {mi_variable2}")
+print(f"{mi_variable3}, {mi_variable4}")
+
+#Por referencia
+
+def value(valor1:list, valor2: list) -> tuple:
+    #ue(mi_variable1, mi_variable2)
+    temp = valor1
+    valor1 = valor2
+    valor2 = temp
+    return valor1, valor2
+
+mi_lista_3 = [10,20]
+mi_lista_4 = [30,40]
+mi_lista_5, mi_lista_6 = value(mi_lista_3, mi_lista_4)
+
+print(f"{mi_lista_3}, {mi_lista_4}")
+print(f"{mi_lista_5}, {mi_lista_6}")
