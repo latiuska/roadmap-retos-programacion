@@ -1,0 +1,79 @@
+'''EJERCICIO:
+ * Entiende el concepto de recursividad creando una función recursiva que imprima
+ * números del 100 al 0.
+ *
+ * DIFICULTAD EXTRA (opcional):
+ * Utiliza el concepto de recursividad para:
+ * - Calcular el factorial de un número concreto (la función recibe ese número).
+ * - Calcular el valor de un elemento concreto (según su posición) en la sucesión de Fibonacci (la función recibe la posición).'''
+
+
+#Recursividad
+
+def cuenta_atras(numero:int):
+    if numero >= 0:
+        print(numero)
+        cuenta_atras(numero-1)
+cuenta_atras(100)
+
+#Extra#
+
+#Factorial: El factorial de un entero positivo n, el factorial de n o n factorial se define en principio como el
+#producto de todos los números enteros positivos desde 1 hasta n.
+
+# 5! = 5 * 4 * 3 * 2 * 1
+# 5! = 5 * 4 * 3 * 2
+# 5! = 5 * 4 * 6
+# 5! = 5 * 24
+# 5! = 120
+
+def factorial(numero):
+    if numero < 0:
+        return 0
+    elif numero == 0:
+        return 1
+    else:
+        return numero * factorial(numero-1)
+
+numero = 4
+resultado = factorial(numero)
+print(f'El factorial de {numero} es {resultado}')
+
+#Secuencia Fibonacci
+
+"""En matemática, la sucesión de Fibonacci se trata de una serie infinita de números naturales que empieza con un 0 y 
+un 1 y continúa añadiendo números que son la suma de los dos anteriores: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 
+233, 377, 610, 987, 1597"""
+
+
+#Sin recursividad
+n = 10
+num1 = 0
+num2 = 1
+next_number = num2
+count = 1
+
+while count <= n:
+    print(next_number, end=" ")
+    count += 1
+    num1, num2 = num2, next_number
+    next_number = num1 + num2
+print()
+
+#Con recursividad
+
+def fibonacci(num_fib):
+    #Si el número es menor que 0 da error
+    if num_fib < 0:
+        print("El número no puede ser cero")
+    #En caso de ser 0, retorno 0
+    elif num_fib == 0:
+        return 0
+    #Si es 1 o 2, retorno 1
+    elif num_fib == 1 or num_fib == 2:
+        return 1
+    #Llamo a la función (dentro de la función)
+    else:
+        return fibonacci(num_fib-1) + fibonacci(num_fib-2)
+
+print(fibonacci(10))
